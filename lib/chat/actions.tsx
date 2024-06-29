@@ -9,6 +9,8 @@ import {
   createStreamableValue
 } from 'ai/rsc'
 import { openai } from '@ai-sdk/openai'
+import fs from 'fs/promises'
+import path from 'path'
 
 import {
   spinner,
@@ -106,6 +108,19 @@ async function confirmPurchase(symbol: string, price: number, amount: number) {
   }
 }
 
+async function showTakeHomeAssessmentUI() {
+  'use server'
+
+  const filePath = path.resolve(process.cwd(), 'responses.md')
+  const fileContent = await fs.readFile(filePath, 'utf-8')
+
+  return createStreamableUI(
+    <BotCard>
+      <pre>{fileContent}</pre>
+    </BotCard>
+  )
+}
+
 async function submitUserMessage(content: string) {
   'use server'
 
@@ -137,6 +152,7 @@ async function submitUserMessage(content: string) {
     - "[Price of AAPL = 100]" means that an interface of the stock price of AAPL is shown to the user.
     - "[User has changed the amount of AAPL to 10]" means that the user has changed the amount of AAPL to 10 in the UI.
     
+    If the user requests: 'Show me the responses to the Take Home Assessment', call \`show_take_home_assessment_ui\` to show the responses UI.
     If the user requests purchasing a stock, call \`show_stock_purchase_ui\` to show the purchase UI.
     If the user just wants the price, call \`show_stock_price\` to show the price.
     If you want to show trending stocks, call \`list_stocks\`.
@@ -473,6 +489,20 @@ async function submitUserMessage(content: string) {
             </BotCard>
           )
         }
+      },
+      showTakeHomeAssessmentUI: {
+        description: 'Show the responses to the Take Home Assessment.',
+        parameters: z.object({}),
+        generate: async function* () {
+          const filePath = path.resolve(process.cwd(), 'responses.md')
+          const fileContent = await fs.readFile(filePath, 'utf-8')
+
+          return (
+            <BotCard>
+              <pre>{fileContent}</pre>
+            </BotCard>
+          )
+        }
       }
     }
   })
@@ -575,6 +605,11 @@ export const getUIStateFromAIState = (aiState: Chat) => {
               <BotCard>
                 {/* @ts-expect-error */}
                 <Events props={tool.result} />
+              </BotCard>
+            ) : tool.toolName === 'showTakeHomeAssessmentUI' ? (
+              <BotCard>
+                {/* @ts-expect-error */}
+                <pre>{tool.result}</pre>
               </BotCard>
             ) : null
           })
