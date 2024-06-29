@@ -46,8 +46,8 @@ export function ChatPanel({
       message: 'What is the price of $DOGE right now?'
     },
     {
-      heading: 'Responses ',
-      subheading: 'Take Home Assessment',
+      heading: 'Show me the responses ',
+      subheading: 'of the take Home Assessment',
       message: `Show me the responses to the Take Home Assessment.`
     },
     {

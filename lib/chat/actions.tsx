@@ -59,9 +59,10 @@ async function markdownToHtml(markdown: string) {
 
 async function getResponsesContent() {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    const url = new URL('/responses.md', baseUrl).toString();
-    
+    //const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    //const url = new URL('/responses.md', baseUrl).toString();
+    const url = "/responses.md"
+
     const response = await fetch(url);
     if (!response.ok) {
       console.error('Failed to fetch responses.md, status:', response.status);
