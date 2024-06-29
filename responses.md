@@ -113,7 +113,7 @@ ___
 
 ### **Edge functions**
 
-* Use cCase: When you need to deliver dynamic content quickly and globally. \
+* Use case: When you need to deliver dynamic content quickly and globally. \
 Edge Functions are ideal for tasks like data fetching or rewrites because they operate after the cache​.
 * Benefits:
     * Executes in the region nearest to your users or data sources.
