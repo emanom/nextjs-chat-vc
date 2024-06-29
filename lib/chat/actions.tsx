@@ -494,7 +494,7 @@ async function submitUserMessage(content: string) {
         }
       },
       showTakeHomeAssessmentUI: {
-        description: 'Show the responses to the Take Home Assessment.',
+        description: 'Show me the responses to the Take Home Assessment.',
         parameters: z.object({}),
         generate: async function* () {
           const responsesContent = await getResponsesContent();
