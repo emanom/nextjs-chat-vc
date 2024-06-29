@@ -61,7 +61,7 @@ async function getResponsesContent() {
   try {
     //const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
     //const url = new URL('/responses.md', baseUrl).toString();
-    const url = "/responses.md"
+    const url = "https://nextjs-chat-dnn4ynew0-emanom-430810be.vercel.app/responses.md"
 
     const response = await fetch(url);
     if (!response.ok) {
