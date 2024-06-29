@@ -19,14 +19,6 @@ import {
   Purchase
 } from '@/components/stocks'
 
-async function getResponsesContent() {
-  const response = await fetch('/responses.md');
-  if (!response.ok) {
-    throw new Error('Failed to fetch responses.md');
-  }
-  return response.text();
-}
-
 import { z } from 'zod'
 import { EventsSkeleton } from '@/components/stocks/events-skeleton'
 import { Events } from '@/components/stocks/events'
@@ -43,6 +35,70 @@ import { saveChat } from '@/app/actions'
 import { SpinnerMessage, UserMessage } from '@/components/stocks/message'
 import { Chat, Message } from '@/lib/types'
 import { auth } from '@/auth'
+
+// New function to get responses content
+import { marked } from 'marked';
+import { unified } from 'unified';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import rehypeRaw from 'rehype-raw';
+import rehypeStringify from 'rehype-stringify';
+
+import styles from '././syles/MarkdownContent.module.css'
+
+async function markdownToHtml(markdown: string) {
+  const result = await unified()
+    .use(remarkParse)
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw)
+    .use(rehypeStringify)
+    .process(markdown);
+
+  return result.toString();
+}
+
+async function getResponsesContent() {
+  try {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    const url = new URL('/responses.md', baseUrl).toString();
+    
+    const response = await fetch(url);
+    if (!response.ok) {
+      console.error('Failed to fetch responses.md, status:', response.status);
+      throw new Error('Failed to fetch responses.md');
+    }
+    const markdown = await response.text();
+    
+    // Convert Markdown to HTML
+    const html = await markdownToHtml(markdown);
+    
+    return html;
+  } catch (error) {
+    console.error("Error fetching and converting responses content:", error);
+    throw error;
+  }
+}
+
+async function showTakeHomeAssessmentUI() {
+  'use server'
+
+  try {
+    const responsesContent = await getResponsesContent();
+
+    return createStreamableUI(
+      <BotCard>
+        <pre>{responsesContent}</pre>
+      </BotCard>
+    );
+  } catch (error) {
+    return createStreamableUI(
+      <BotCard>
+        <p>Failed to load responses. Please try again later.</p>
+      </BotCard>
+    );
+  }
+}
+
 
 async function confirmPurchase(symbol: string, price: number, amount: number) {
   'use server'
@@ -114,26 +170,6 @@ async function confirmPurchase(symbol: string, price: number, amount: number) {
   }
 }
 
-async function showTakeHomeAssessmentUI() {
-  'use server'
-
-  try {
-    const responsesContent = await getResponsesContent();
-
-    return createStreamableUI(
-      <BotCard>
-        <pre>{responsesContent}</pre>
-      </BotCard>
-    );
-  } catch (error) {
-    return createStreamableUI(
-      <BotCard>
-        <p>Failed to load responses. Please try again later.</p>
-      </BotCard>
-    );
-  }
-}
-
 async function submitUserMessage(content: string) {
   'use server'
 
@@ -165,11 +201,11 @@ async function submitUserMessage(content: string) {
     - "[Price of AAPL = 100]" means that an interface of the stock price of AAPL is shown to the user.
     - "[User has changed the amount of AAPL to 10]" means that the user has changed the amount of AAPL to 10 in the UI.
     
+    If the user requests purchasing a stock, call \`show_stock_purchase_ui\` to show the purchase UI.
+    If the user just wants the price, call \`show_stock_price\` to show the price.
+    If you want to show trending stocks, call \`list_stocks\`.
+    If you want to show events, call \`get_events\`.
     If the user requests the responses to the Take Home Assessment, call \`showTakeHomeAssessmentUI\` to show the responses UI.
-    If the user requests purchasing a stock, call \`showStockPurchase\` to show the purchase UI.
-    If the user just wants the price, call \`showStockPrice\` to show the price.
-    If you want to show trending stocks, call \`listStocks\`.
-    If you want to show events, call \`getEvents\`.
     If the user wants to sell stock, or complete another impossible task, respond that you are a demo and cannot do that.
     
     Besides that, you can also chat with users and do some calculations if needed.`,
@@ -206,25 +242,363 @@ async function submitUserMessage(content: string) {
       return textNode
     },
     tools: {
+      listStocks: {
+        description: 'List three imaginary stocks that are trending.',
+        parameters: z.object({
+          stocks: z.array(
+            z.object({
+              symbol: z.string().describe('The symbol of the stock'),
+              price: z.number().describe('The price of the stock'),
+              delta: z.number().describe('The change in price of the stock')
+            })
+          )
+        }),
+        generate: async function* ({ stocks }) {
+          yield (
+            <BotCard>
+              <StocksSkeleton />
+            </BotCard>
+          )
+
+          await sleep(1000)
+
+          const toolCallId = nanoid()
+
+          aiState.done({
+            ...aiState.get(),
+            messages: [
+              ...aiState.get().messages,
+              {
+                id: nanoid(),
+                role: 'assistant',
+                content: [
+                  {
+                    type: 'tool-call',
+                    toolName: 'listStocks',
+                    toolCallId,
+                    args: { stocks }
+                  }
+                ]
+              },
+              {
+                id: nanoid(),
+                role: 'tool',
+                content: [
+                  {
+                    type: 'tool-result',
+                    toolName: 'listStocks',
+                    toolCallId,
+                    result: stocks
+                  }
+                ]
+              }
+            ]
+          })
+
+          return (
+            <BotCard>
+              <Stocks props={stocks} />
+            </BotCard>
+          )
+        }
+      },
+      showStockPrice: {
+        description:
+          'Get the current stock price of a given stock or currency. Use this to show the price to the user.',
+        parameters: z.object({
+          symbol: z
+            .string()
+            .describe(
+              'The name or symbol of the stock or currency. e.g. DOGE/AAPL/USD.'
+            ),
+          price: z.number().describe('The price of the stock.'),
+          delta: z.number().describe('The change in price of the stock')
+        }),
+        generate: async function* ({ symbol, price, delta }) {
+          yield (
+            <BotCard>
+              <StockSkeleton />
+            </BotCard>
+          )
+
+          await sleep(1000)
+
+          const toolCallId = nanoid()
+
+          aiState.done({
+            ...aiState.get(),
+            messages: [
+              ...aiState.get().messages,
+              {
+                id: nanoid(),
+                role: 'assistant',
+                content: [
+                  {
+                    type: 'tool-call',
+                    toolName: 'showStockPrice',
+                    toolCallId,
+                    args: { symbol, price, delta }
+                  }
+                ]
+              },
+              {
+                id: nanoid(),
+                role: 'tool',
+                content: [
+                  {
+                    type: 'tool-result',
+                    toolName: 'showStockPrice',
+                    toolCallId,
+                    result: { symbol, price, delta }
+                  }
+                ]
+              }
+            ]
+          })
+
+          return (
+            <BotCard>
+              <Stock props={{ symbol, price, delta }} />
+            </BotCard>
+          )
+        }
+      },
+      showStockPurchase: {
+        description:
+          'Show price and the UI to purchase a stock or currency. Use this if the user wants to purchase a stock or currency.',
+        parameters: z.object({
+          symbol: z
+            .string()
+            .describe(
+              'The name or symbol of the stock or currency. e.g. DOGE/AAPL/USD.'
+            ),
+          price: z.number().describe('The price of the stock.'),
+          numberOfShares: z
+            .number()
+            .describe(
+              'The **number of shares** for a stock or currency to purchase. Can be optional if the user did not specify it.'
+            )
+        }),
+        generate: async function* ({ symbol, price, numberOfShares = 100 }) {
+          const toolCallId = nanoid()
+
+          if (numberOfShares <= 0 || numberOfShares > 1000) {
+            aiState.done({
+              ...aiState.get(),
+              messages: [
+                ...aiState.get().messages,
+                {
+                  id: nanoid(),
+                  role: 'assistant',
+                  content: [
+                    {
+                      type: 'tool-call',
+                      toolName: 'showStockPurchase',
+                      toolCallId,
+                      args: { symbol, price, numberOfShares }
+                    }
+                  ]
+                },
+                {
+                  id: nanoid(),
+                  role: 'tool',
+                  content: [
+                    {
+                      type: 'tool-result',
+                      toolName: 'showStockPurchase',
+                      toolCallId,
+                      result: {
+                        symbol,
+                        price,
+                        numberOfShares,
+                        status: 'expired'
+                      }
+                    }
+                  ]
+                },
+                {
+                  id: nanoid(),
+                  role: 'system',
+                  content: `[User has selected an invalid amount]`
+                }
+              ]
+            })
+
+            return <BotMessage content={'Invalid amount'} />
+          } else {
+            aiState.done({
+              ...aiState.get(),
+              messages: [
+                ...aiState.get().messages,
+                {
+                  id: nanoid(),
+                  role: 'assistant',
+                  content: [
+                    {
+                      type: 'tool-call',
+                      toolName: 'showStockPurchase',
+                      toolCallId,
+                      args: { symbol, price, numberOfShares }
+                    }
+                  ]
+                },
+                {
+                  id: nanoid(),
+                  role: 'tool',
+                  content: [
+                    {
+                      type: 'tool-result',
+                      toolName: 'showStockPurchase',
+                      toolCallId,
+                      result: {
+                        symbol,
+                        price,
+                        numberOfShares
+                      }
+                    }
+                  ]
+                }
+              ]
+            })
+
+            return (
+              <BotCard>
+                <Purchase
+                  props={{
+                    numberOfShares,
+                    symbol,
+                    price: +price,
+                    status: 'requires_action'
+                  }}
+                />
+              </BotCard>
+            )
+          }
+        }
+      },
+      getEvents: {
+        description:
+          'List funny imaginary events between user highlighted dates that describe stock activity.',
+        parameters: z.object({
+          events: z.array(
+            z.object({
+              date: z
+                .string()
+                .describe('The date of the event, in ISO-8601 format'),
+              headline: z.string().describe('The headline of the event'),
+              description: z.string().describe('The description of the event')
+            })
+          )
+        }),
+        generate: async function* ({ events }) {
+          yield (
+            <BotCard>
+              <EventsSkeleton />
+            </BotCard>
+          )
+
+          await sleep(1000)
+
+          const toolCallId = nanoid()
+
+          aiState.done({
+            ...aiState.get(),
+            messages: [
+              ...aiState.get().messages,
+              {
+                id: nanoid(),
+                role: 'assistant',
+                content: [
+                  {
+                    type: 'tool-call',
+                    toolName: 'getEvents',
+                    toolCallId,
+                    args: { events }
+                  }
+                ]
+              },
+              {
+                id: nanoid(),
+                role: 'tool',
+                content: [
+                  {
+                    type: 'tool-result',
+                    toolName: 'getEvents',
+                    toolCallId,
+                    result: events
+                  }
+                ]
+              }
+            ]
+          })
+
+          return (
+            <BotCard>
+              <Events props={events} />
+            </BotCard>
+          )
+        }
+      },
       showTakeHomeAssessmentUI: {
         description: 'Show the responses to the Take Home Assessment.',
         parameters: z.object({}),
         generate: async function* () {
-          const responsesContent = await getResponsesContent();
-
-          yield (
-            <BotCard>
-              <p>Loading responses...</p>
-            </BotCard>
-          );
-
-          await sleep(1000); // Simulate some loading time
-
-          return (
-            <BotCard>
-              <pre>{responsesContent}</pre>
-            </BotCard>
-          );
+          try {
+            yield (
+              <BotCard>
+                <p>Loading responses...</p>
+              </BotCard>
+            );
+      
+            const htmlContent = await getResponsesContent();
+            const toolCallId = nanoid();
+      
+            aiState.done({
+              ...aiState.get(),
+              messages: [
+                ...aiState.get().messages,
+                {
+                  id: nanoid(),
+                  role: 'assistant',
+                  content: [
+                    {
+                      type: 'tool-call',
+                      toolName: 'showTakeHomeAssessmentUI',
+                      toolCallId,
+                      args: {}
+                    }
+                  ]
+                },
+                {
+                  id: nanoid(),
+                  role: 'tool',
+                  content: [
+                    {
+                      type: 'tool-result',
+                      toolName: 'showTakeHomeAssessmentUI',
+                      toolCallId,
+                      result: htmlContent
+                    }
+                  ]
+                }
+              ]
+            });
+      
+            return (
+              <BotCard>
+                <div 
+                  className={styles['markdown-content']}
+                  dangerouslySetInnerHTML={{ __html: htmlContent }} 
+                />
+              </BotCard>
+            );
+          } catch (error) {
+            return (
+              <BotCard>
+                <p>Failed to load responses. Please try again later.</p>
+              </BotCard>
+            );
+          }
         }
       }
     }
@@ -331,8 +705,7 @@ export const getUIStateFromAIState = (aiState: Chat) => {
               </BotCard>
             ) : tool.toolName === 'showTakeHomeAssessmentUI' ? (
               <BotCard>
-                {/* @ts-expect-error */}
-                <pre>{tool.result}</pre>
+                <div dangerouslySetInnerHTML={{ __html: tool.result }} />
               </BotCard>
             ) : null
           })

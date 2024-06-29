@@ -1,0 +1,61 @@
+.markdown-content {
+  line-height: 1.6;
+}
+
+.markdown-content p {
+  margin-bottom: 1em;
+}
+
+.markdown-content pre {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 1em;
+  overflow-x: auto;
+  color: #333; /* Dark text for light background */
+}
+
+.markdown-content code {
+  background-color: #f4f4f4;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+  color: #333; /* Dark text for light background */
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .markdown-content pre {
+    background-color: #2d2d2d;
+    border-color: #444;
+    color: #e0e0e0; /* Light text for dark background */
+  }
+
+  .markdown-content code {
+    background-color: #2d2d2d;
+    color: #e0e0e0; /* Light text for dark background */
+  }
+}
+
+.markdown-content h1, .markdown-content h2, .markdown-content h3, 
+.markdown-content h4, .markdown-content h5, .markdown-content h6 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-content ul, .markdown-content ol {
+  margin-bottom: 1em;
+  padding-left: 2em;
+}
+
+.markdown-content hr {
+  border: 0;
+  border-top: 1px solid #ddd;
+  margin: 1em 0;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .markdown-content hr {
+    border-top-color: #444;
+  }
+}
