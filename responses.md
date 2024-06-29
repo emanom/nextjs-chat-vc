@@ -363,8 +363,6 @@ ___
 
 ## 10. Improving the exercise
 
-The Vercel familiarisation exercise is comprehensive and well-structured, balancing practical tasks and theoretical questions well. However, it could be improved or altered in some areas to enhance the candidate experience and evaluation process.
-
 
 1. **Incorporate more real-world scenarios**
 
@@ -379,3 +377,14 @@ The Vercel familiarisation exercise is comprehensive and well-structured, balanc
 **Current issue**: The current customer interaction questions are excellent but could be enhanced to further test empathy and communication skills.**Improvement**: Add scenarios that require empathetic communication and conflict resolution skills.
 
 **Example**: "A customer writes in stating they are dissatisfied with Vercel's service and are considering moving to another platform. Craft a response that addresses their concerns, highlights Vercel's strengths, and encourages them to stay."
+
+3. **Improving instructions for answer submission**
+
+The instruction to add responses directly into the Vercel project can be vague and lead to confusion about where and how to format the answers.
+
+Example:
+**Current Instruction:**
+"Please complete the following questions by adding the response directly into your Vercel project. Do not create a separate document."
+
+**Improved Instruction:**
+"Please complete the following questions by creating a file named exercise-responses.md at the root of your Vercel project repository. Add your responses to this markdown file, ensuring each answer is clearly labeled with the corresponding question number and title. Do not submit separate documents or external files."
