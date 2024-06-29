@@ -3,8 +3,8 @@
 Based on my experience and preferences, here are my explanations for why specific tasks are my most favourite or least favourite:
 
 
-#### **Most favourite tasks  \
-**
+#### Most favourite tasks  
+
 
 
 1. **Identify, file (and, where possible, resolve) bugs in private and public Vercel/Next.js repos on GitHub:**
@@ -23,9 +23,8 @@ Based on my experience and preferences, here are my explanations for why specifi
     * Collaborating with the product team to create new features based on customer feedback is exciting because it directly influences the product roadmap. My experience in customer success roles has given me a good understanding of customer needs and how to translate them into actionable features. \
 
 
-#### 
-    **Least favourite tasks  \
-**
+#### Least favourite tasks  
+
 
 1. **Manage a support team:**
     * Managing a support team involves a lot of administrative and HR-related tasks, which are less appealing to me compared to hands-on technical work. While leadership is essential, I prefer directly focusing on solving technical challenges and improving support processes to start with. \
@@ -40,4 +39,4 @@ Based on my experience and preferences, here are my explanations for why specifi
     * Engaging on social media for support is not my preferred method. I find more value in direct, technical interactions through formal channels like email or support tickets. \
 
 5. **Engage multiple users at once in a public discussion to answer their questions and troubleshoot problems:**
-    * Like social media interactions, public discussion forums are not where I shine. I prefer structured, one-on-one support where I can deliver detailed and personalised assistance, making the support experience more effective and satisfying for the customer. \
+    * Like social media interactions, public discussion forums are not where I shine. I prefer structured, one-on-one support where I can deliver detailed and personalised assistance, making the support experience more effective and satisfying for the customer. 
