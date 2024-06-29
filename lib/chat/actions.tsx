@@ -57,25 +57,27 @@ async function markdownToHtml(markdown: string) {
   return result.toString();
 }
 
-async function getResponsesContent() {
-  try {
-    //const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    //const url = new URL('/responses.md', baseUrl).toString();
-    const url = "https://nextjs-chat-dnn4ynew0-emanom-430810be.vercel.app/responses.md"
+import { promises as fs } from 'fs';
+import path from 'path';
 
-    const response = await fetch(url);
-    if (!response.ok) {
-      console.error('Failed to fetch responses.md, status:', response.status);
-      throw new Error('Failed to fetch responses.md');
-    }
-    const markdown = await response.text();
+async function getResponsesContent() {
+  console.log("Reading and converting responses content...");
+  try {
+    // Construct the absolute path to the responses.md file
+    const filePath = path.join(process.cwd(), 'public', 'responses.md');
+    console.log("Reading from file:", filePath);
+    
+    // Read the file
+    const markdown = await fs.readFile(filePath, 'utf-8');
+    console.log("Read markdown content:", markdown);
     
     // Convert Markdown to HTML
     const html = await markdownToHtml(markdown);
+    console.log("Converted HTML content:", html);
     
     return html;
   } catch (error) {
-    console.error("Error fetching and converting responses content:", error);
+    console.error("Error reading and converting responses content:", error);
     throw error;
   }
 }
