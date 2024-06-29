@@ -3,9 +3,9 @@
 Based on my experience and preferences, here are my explanations for why specific tasks are my most favourite or least favourite:
 
 
-#### **Most favourite tasks**
+#### Most favourite tasks**
 
-1. **Identify, file (and, where possible, resolve) bugs in private and public Vercel/Next.js repos on GitHub:**
+**1. Identify, file (and, where possible, resolve) bugs in private and public Vercel/Next.js repos on GitHub:**
 
 I would enjoy this task because it involves deep technical problem-solving and helps improve the overall product. My experience with web architecture and frontend frameworks like Next.js makes me well-suited for identifying and resolving bugs.
 
