@@ -21,6 +21,9 @@ import {
 
 async function getResponsesContent() {
   const response = await fetch('/responses.md');
+  if (!response.ok) {
+    throw new Error('Failed to fetch responses.md');
+  }
   return response.text();
 }
 
@@ -114,11 +117,8 @@ async function confirmPurchase(symbol: string, price: number, amount: number) {
 async function showTakeHomeAssessmentUI() {
   'use server'
 
-  console.log('showTakeHomeAssessmentUI function called'); // Debug log
-
   try {
     const responsesContent = await getResponsesContent();
-    console.log('responsesContent:', responsesContent); // Debug log
 
     return createStreamableUI(
       <BotCard>
@@ -126,8 +126,6 @@ async function showTakeHomeAssessmentUI() {
       </BotCard>
     );
   } catch (error) {
-    console.error('Error fetching responsesContent:', error); // Error log
-
     return createStreamableUI(
       <BotCard>
         <p>Failed to load responses. Please try again later.</p>
@@ -212,9 +210,7 @@ async function submitUserMessage(content: string) {
         description: 'Show the responses to the Take Home Assessment.',
         parameters: z.object({}),
         generate: async function* () {
-          console.log('showTakeHomeAssessmentUI tool invoked'); // Debug log
           const responsesContent = await getResponsesContent();
-          console.log('Fetched responses content:', responsesContent); // Debug log
 
           yield (
             <BotCard>
@@ -228,7 +224,7 @@ async function submitUserMessage(content: string) {
             <BotCard>
               <pre>{responsesContent}</pre>
             </BotCard>
-          )
+          );
         }
       }
     }
