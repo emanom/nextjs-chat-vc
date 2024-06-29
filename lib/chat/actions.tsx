@@ -9,8 +9,6 @@ import {
   createStreamableValue
 } from 'ai/rsc'
 import { openai } from '@ai-sdk/openai'
-import fs from 'fs/promises'
-import path from 'path'
 
 import {
   spinner,
@@ -20,6 +18,11 @@ import {
   Stock,
   Purchase
 } from '@/components/stocks'
+
+async function getResponsesContent() {
+  const response = await fetch('/responses.md');
+  return response.text();
+}
 
 import { z } from 'zod'
 import { EventsSkeleton } from '@/components/stocks/events-skeleton'
@@ -111,12 +114,11 @@ async function confirmPurchase(symbol: string, price: number, amount: number) {
 async function showTakeHomeAssessmentUI() {
   'use server'
 
-  const filePath = path.resolve(process.cwd(), 'responses.md')
-  const fileContent = await fs.readFile(filePath, 'utf-8')
+  const responsesContent = await getResponsesContent();
 
   return createStreamableUI(
     <BotCard>
-      <pre>{fileContent}</pre>
+      <pre>{responsesContent}</pre>
     </BotCard>
   )
 }
@@ -494,12 +496,11 @@ async function submitUserMessage(content: string) {
         description: 'Show the responses to the Take Home Assessment.',
         parameters: z.object({}),
         generate: async function* () {
-          const filePath = path.resolve(process.cwd(), 'responses.md')
-          const fileContent = await fs.readFile(filePath, 'utf-8')
-
+          const responsesContent = await getResponsesContent();
+      
           return (
             <BotCard>
-              <pre>{fileContent}</pre>
+              <pre>{responsesContent}</pre>
             </BotCard>
           )
         }
