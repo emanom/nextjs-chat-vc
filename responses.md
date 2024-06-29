@@ -111,9 +111,9 @@ ___
 
 ## 4. When to use Edge Functions, Serverless Functions, or Edge Middleware with Vercel?
 
-### **Edge Functions**
+### **Edge functions**
 
-* Use Case: When you need to deliver dynamic content quickly and globally. \
+* Use cCase: When you need to deliver dynamic content quickly and globally. \
 Edge Functions are ideal for tasks like data fetching or rewrites because they operate after the cache​.
 * Benefits:
     * Executes in the region nearest to your users or data sources.
@@ -122,20 +122,20 @@ Edge Functions are ideal for tasks like data fetching or rewrites because they o
 * Example: Personalising content based on user location.
 
 
-### **Serverless Functions**
+### **Serverless functions**
 
 
-* Use Case: When you need scalable backend functions that adjust resource consumption based on traffic demands. Serverless Functions are useful for scenarios where you need a flexible runtime environment that can handle various backend processes efficiently.
+* Use case: When you need scalable backend functions that adjust resource consumption based on traffic demands. Serverless Functions are useful for scenarios where you need a flexible runtime environment that can handle various backend processes efficiently.
 * Benefits:
     * Prevents failures during peak hours.
     * Reduces costs during low activity periods.
 * Example: Handling API requests that require backend processing.
 
 
-### **Edge Middleware**
+### **Edge middleware**
 
 
-* Use Case: When you need to modify requests before they reach your site or before the cache is hit. Edge Middleware is highly effective for A/B testing, geolocation, and security enhancements like bot protection and quick, secure sign-ons. It allows for modifications at the edge, reducing the need for client-side scripts and improving overall performance
+* Use case: When you need to modify requests before they reach your site or before the cache is hit. Edge Middleware is highly effective for A/B testing, geolocation, and security enhancements like bot protection and quick, secure sign-ons. It allows for modifications at the edge, reducing the need for client-side scripts and improving overall performance
 * Benefits:
     * Executes before a request is processed, allowing for request modifications.
     * Effective for personalising statically generated content.
@@ -150,22 +150,22 @@ When a customer requests help with a build issue on an unfamiliar framework or t
 Here's how I would begin troubleshooting and the questions I would ask:
 
 
-### **Initial Steps:**
+### **Initial steps:**
 
 
-1. **Review Build Logs**: Ask the customer to provide the build logs. Build logs often contain error messages and other helpful information that can help diagnose the issue.
-2. **Check Documentation**: Refer to Vercel's documentation to see if there are any general guidelines or common issues related to builds that might apply.
-3. **Identify Framework**: Determine if Vercel supports the framework or technology and if any specific configurations are required.
+1. **Review build logs**: Ask the customer to provide the build logs. Build logs often contain error messages and other helpful information that can help diagnose the issue.
+2. **Check dDocumentation**: Refer to Vercel's documentation to see if there are any general guidelines or common issues related to builds that might apply.
+3. **Identify framework**: Determine if Vercel supports the framework or technology and if any specific configurations are required.
 
 
-### **Questions to Ask:**
+### **Questions:**
 
 
 
-1. **Project Details**:
+1. **Project details**:
     * What framework or technology are you using for your project?
     * Can you provide a brief description of your project and its structure?
-2. **Error Details**:
+2. **Error details**:
     * What specific error messages are you seeing in the build logs?
     * When did you first notice this issue? Was it after a particular change or update?
 3. **Configuration**:
@@ -174,25 +174,25 @@ Here's how I would begin troubleshooting and the questions I would ask:
 4. **Dependencies**:
     * Are there any specific dependencies or versions that your project relies on?
     * Have you recently updated any dependencies or made changes to your package manager configuration (e.g., package.json, yarn.lock)?
-5. **Local Environment**:
+5. **Local environment**:
     * Does the project build successfully on your local machine?
     * Are there any differences between your local environment and the Vercel environment that you are aware of?
-6. **Previous Builds**:
+6. **Previous builds**:
     * Have you successfully deployed this project on Vercel before? If so, what has changed since the last successful deployment?
 
 
-### **Example Response:**
+### **Example response:**
 
 Hi there, 
 
 Thank you for reaching out to us! I understand you're experiencing a build issue with a specific framework. To help us troubleshoot this effectively, could you please provide the following information: 
 
 
-1. **Project Details**:
+1. **Project details**:
     * What framework or technology are you using for your project?
     * Can you provide a brief description of your project and its structure? 
 
-2. **Error Details**:
+2. **Error details**:
     * What specific error messages are you seeing in the build logs?
     * When did you first notice this issue? Was it after a specific change or update? 
 
@@ -204,11 +204,11 @@ Thank you for reaching out to us! I understand you're experiencing a build issue
     * Are there any specific dependencies or versions that your project relies on?
     * Have you recently updated any dependencies or made changes to your package manager configuration (e.g., package.json, yarn.lock)? 
 
-5. **Local Environment**:
+5. **Local environment**:
     * Does the project build successfully on your local machine?
     * Are there any differences between your local environment and the Vercel environment that you are aware of? 
 
-6. **Previous Builds**:
+6. **Previous builds**:
     * Have you successfully deployed this project on Vercel before? If so, what has changed since the last successful deployment? 
 
 
@@ -260,8 +260,8 @@ Thank you for reaching out to Support.
 To set up a redirect from the /blog path to https://example.com, you can use Vercel's redirect configuration in your vercel.json file. Here’s how you can do it:
 
 
-1. **Create or Update vercel.json**: If you don't already have a vercel.json file in your project, create one in the root directory of your project. If you already have one, open it for editing.
-2. **Add Redirect Configuration**: Add the following redirect rule to the redirects array in your vercel.json file:
+1. **Create or update vercel.json**: If you don't already have a vercel.json file in your project, create one in the root directory of your project. If you already have one, open it for editing.
+2. **Add redirect configuration**: Add the following redirect rule to the redirects array in your vercel.json file:
 
 ```
 {
@@ -276,7 +276,7 @@ To set up a redirect from the /blog path to https://example.com, you can use Ver
 ```
 
 12. This configuration tells Vercel to permanently redirect any requests to /blog to https://example.com.
-13. **Deploy Your Changes**: Once you’ve added the redirect rule, deploy your project to Vercel. The redirect will take effect immediately after deployment.
+13. **Deploy your changes**: Once you’ve added the redirect rule, deploy your project to Vercel. The redirect will take effect immediately after deployment.
 
 ____
 
@@ -313,7 +313,7 @@ Here’s how you can do it:
 
 This configuration will apply the X-Robots-Tag: noindex header to all routes in your project.
 
-2. **Deploy Your Changes**: Once you’ve added the header configuration, deploy your project to Vercel. The noindex directive will take effect immediately after deployment.
+2. **Deploy your changes**: Once you’ve added the header configuration, deploy your project to Vercel. The noindex directive will take effect immediately after deployment.
 
 By setting this header, search engines will be instructed not to index any pages of your site, ensuring that your content remains private.
 
@@ -354,7 +354,6 @@ One of the most common problems Vercel customers ask for help is probably build 
     * **Regular check-ins for Enterprise customers**: Establish regular check-ins with dedicated support teams to review usage, optimise configurations, and preemptively address any issues for enterprise customers​​.
     * **Continuous Knowledge Base updates**: Regularly update and expand the knowledge base with new solutions based on the latest reported issues. Ensure this resource is easily searchable and well-organised​.
 4. **Community engagement**:
-    * **Hackathons**: Host hackathons to encourage users to experiment with Vercel and share their solutions to common problems. This fosters a sense of community and generates a wealth of shared knowledge.
     * **User feedback**: Create a feedback mechanism where customers can easily report issues and suggest improvements. Use this feedback to enhance Vercel's features and support resources continuously​​.
 
 By implementing these strategies, Vercel can address customers' immediate concerns while building a solid framework to help users become more self-sufficient and proficient.
@@ -362,7 +361,7 @@ By implementing these strategies, Vercel can address customers' immediate concer
 
 ___
 
-## 10. Improving the Exercise
+## 10. Improving the exercise
 
 The Vercel familiarisation exercise is comprehensive and well-structured, balancing practical tasks and theoretical questions well. However, it could be improved or altered in some areas to enhance the candidate experience and evaluation process.
 
