@@ -366,25 +366,6 @@ ___
 The Vercel familiarisation exercise is comprehensive and well-structured, balancing practical tasks and theoretical questions well. However, it could be improved or altered in some areas to enhance the candidate experience and evaluation process.
 
 
-
-1. **Provide more context for technical questions**
-
-**Current issue**: Some questions might be too open-ended, which could lead to candidates spending too much time figuring out what's expected.
-
-**Improvement**: Offer more context or examples for technical questions to guide candidates on what kind of answers are expected.
-
-**Example**: "When would you choose to use Edge Functions, Serverless Functions, or Edge Middleware with Vercel? Please provide specific scenarios or use cases for each."
-
-
-
-1. **Allow for partial completion**
-
-**Current issue**: The instruction to move to the next task if unable to complete one, might cause candidates to feel pressured.**Improvement**: Encourage candidates to provide partial solutions or explanations of their thought process if they cannot fully complete a task.
-
-**Suggested Wording**: "If you cannot complete any task, don't stress. Explain your thought process and what would have helped you fully complete that step, then move on to the next one."
-
-
-
 1. **Incorporate more real-world scenarios**
 
 **Current issue**: While the current questions are good, adding more real-world scenarios can better gauge a candidate's practical knowledge.**Improvement**: Include questions that mimic real-world support scenarios more closely, such as dealing with a frustrated customer or optimising performance.
@@ -393,7 +374,7 @@ The Vercel familiarisation exercise is comprehensive and well-structured, balanc
 
 
 
-1. **Enhanced customer interaction questions**
+2. **Enhanced customer interaction questions**
 
 **Current issue**: The current customer interaction questions are excellent but could be enhanced to further test empathy and communication skills.**Improvement**: Add scenarios that require empathetic communication and conflict resolution skills.
 
