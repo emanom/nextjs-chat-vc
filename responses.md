@@ -1,4 +1,4 @@
-### **Brief Explanation for Each Task Ranking**
+1. ## ** Task Ranking**
 
 Based on my experience and preferences, here are my explanations for why specific tasks are my most favourite or least favourite:
 
@@ -39,7 +39,7 @@ Based on my experience and preferences, here are my explanations for why specifi
 
 ___
 
-## What I want to learn or do more of at work
+2. ## What I want to learn or do more of at work
 
 At work, I am always eager to expand my skill set and take on new challenges that can contribute to my growth and the team's success. Here are a few specific areas I want to focus on:
 
@@ -67,7 +67,7 @@ By focusing on these areas, I can add even more value to my role and significant
 
 ___
 
-### **Solving a technical issue in a previous support role**
+3. ## **Solving a technical issue in a previous support role**
 
 
 As a Senior Customer Engineer at Nuance Communications, I encountered a significant technical challenge that required a methodical and innovative approach to resolving.
@@ -109,8 +109,9 @@ This experience resolved a critical issue for the client and enhanced my problem
 
 ___
 
-### **Edge Functions**
+4. ## When to use Edge Functions, Serverless Functions, or Edge Middleware with Vercel?
 
+### **Edge Functions**
 
 * Use Case: When you need to deliver dynamic content quickly and globally. \
 Edge Functions are ideal for tasks like data fetching or rewrites because they operate after the cache​.
@@ -142,6 +143,7 @@ Edge Functions are ideal for tasks like data fetching or rewrites because they o
 
 ____
 
+5. ## Imagine a customer writes in requesting help with a build issue on a framework or technology that you've not seen before. How would you begin troubleshooting this and what questions would you ask the customer to understand the situation better?
 
 When a customer requests help with a build issue on an unfamiliar framework or technology, gathering as much information as possible to understand the situation and provide adequate assistance is essential.
 
@@ -149,7 +151,6 @@ Here's how I would begin troubleshooting and the questions I would ask:
 
 
 ### **Initial Steps:**
-
 
 
 1. **Review Build Logs**: Ask the customer to provide the build logs. Build logs often contain error messages and other helpful information that can help diagnose the issue.
@@ -220,7 +221,9 @@ Vercel Support Team
 
 ___
 
-Hi there, \
+6. ## Follow-up reply to customer
+
+Hi there, 
 
 
 I understand your frustration, and I'm here to help you get this resolved as quickly as possible.  
@@ -248,12 +251,13 @@ Vercel Support Team
 
 ___
 
+7. ## Redirecting from /blog to example.com
+
 Hi there,
 
 Thank you for reaching out to Support.
 
 To set up a redirect from the /blog path to https://example.com, you can use Vercel's redirect configuration in your vercel.json file. Here’s how you can do it:
-
 
 
 1. **Create or Update vercel.json**: If you don't already have a vercel.json file in your project, create one in the root directory of your project. If you already have one, open it for editing.
@@ -276,6 +280,8 @@ To set up a redirect from the /blog path to https://example.com, you can use Ver
 
 ____
 
+8. ## Preventing a project from being indexed by search engines
+
 Hi there,
 
 Thank you for reaching out to Support. 
@@ -284,7 +290,6 @@ Thank you for reaching out to Support.
 If you want your project not to be indexed by search engines, you can achieve this by setting the X-Robots-Tag HTTP header to noindex. This will instruct search engines not to index your site. 
 
 Here’s how you can do it:
-
 
 
 1. **Using vercel.json**: You can add custom headers in your vercel.json file to set the X-Robots-Tag header. Here’s an example configuration: \
@@ -320,9 +325,7 @@ Vercel Support Team
 
 ____
 
-
-### 
-    **Common problem: Build and deployment errors**
+9. ## Common problem
 
 One of the most common problems Vercel customers ask for help is probably build and deployment errors. These issues can arise for various reasons, including memory and disk space limits, configuration errors, and dependency problems.
 
@@ -359,7 +362,7 @@ By implementing these strategies, Vercel can address customers' immediate concer
 
 ___
 
-### **Improving the Exercise**
+10. ## **Improving the Exercise**
 
 The Vercel familiarisation exercise is comprehensive and well-structured, balancing practical tasks and theoretical questions well. However, it could be improved or altered in some areas to enhance the candidate experience and evaluation process.
 
