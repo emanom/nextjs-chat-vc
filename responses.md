@@ -382,7 +382,6 @@ ___
 
 The instruction to add responses directly into the Vercel project can be vague and lead to confusion about where and how to format the answers.
 
-Example:
 **Current Instruction:**
 "Please complete the following questions by adding the response directly into your Vercel project. Do not create a separate document."
 
