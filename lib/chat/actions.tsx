@@ -44,7 +44,8 @@ import rehypeStringify from 'rehype-stringify';
 import { promises as fs } from 'fs';
 import path from 'path';
 
-import styles from '././syles/MarkdownContent.module.css'
+import styles from './syles/MarkdownContent.module.css'
+
 
 async function markdownToHtml(markdown: string) {
   const result = await unified()
@@ -717,4 +718,3 @@ export const getUIStateFromAIState = (aiState: Chat) => {
         ) : null
     }))
 }
-
