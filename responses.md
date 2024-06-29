@@ -113,7 +113,7 @@ ___
 
 ### **Edge functions**
 
-* Use cCase: When you need to deliver dynamic content quickly and globally. \
+* Use case: When you need to deliver dynamic content quickly and globally. \
 Edge Functions are ideal for tasks like data fetching or rewrites because they operate after the cache​.
 * Benefits:
     * Executes in the region nearest to your users or data sources.
@@ -382,8 +382,8 @@ ___
 
 The instruction to add responses directly into the Vercel project can be vague and lead to confusion about where and how to format the answers.
 
-**Current Instruction:**
+**Current instruction:**
 "Please complete the following questions by adding the response directly into your Vercel project. Do not create a separate document."
 
-**Improved Instruction:**
+**Improved instruction:**
 "Please complete the following questions by creating a file named exercise-responses.md at the root of your Vercel project repository. Add your responses to this markdown file, ensuring each answer is clearly labeled with the corresponding question number and title. Do not submit separate documents or external files."
