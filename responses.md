@@ -1,4 +1,4 @@
-1. ## ** Task Ranking**
+## 1. Task Ranking
 
 Based on my experience and preferences, here are my explanations for why specific tasks are my most favourite or least favourite:
 
@@ -39,7 +39,7 @@ Based on my experience and preferences, here are my explanations for why specifi
 
 ___
 
-2. ## What I want to learn or do more of at work
+## 2. What I want to learn or do more of at work
 
 At work, I am always eager to expand my skill set and take on new challenges that can contribute to my growth and the team's success. Here are a few specific areas I want to focus on:
 
@@ -67,7 +67,7 @@ By focusing on these areas, I can add even more value to my role and significant
 
 ___
 
-3. ## **Solving a technical issue in a previous support role**
+## 3. **Solving a technical issue in a previous support role**
 
 
 As a Senior Customer Engineer at Nuance Communications, I encountered a significant technical challenge that required a methodical and innovative approach to resolving.
@@ -109,7 +109,7 @@ This experience resolved a critical issue for the client and enhanced my problem
 
 ___
 
-4. ## When to use Edge Functions, Serverless Functions, or Edge Middleware with Vercel?
+## 4. When to use Edge Functions, Serverless Functions, or Edge Middleware with Vercel?
 
 ### **Edge Functions**
 
@@ -143,7 +143,7 @@ Edge Functions are ideal for tasks like data fetching or rewrites because they o
 
 ____
 
-5. ## Imagine a customer writes in requesting help with a build issue on a framework or technology that you've not seen before. How would you begin troubleshooting this and what questions would you ask the customer to understand the situation better?
+## 5. Imagine a customer writes in requesting help with a build issue on a framework or technology that you've not seen before. How would you begin troubleshooting this and what questions would you ask the customer to understand the situation better?
 
 When a customer requests help with a build issue on an unfamiliar framework or technology, gathering as much information as possible to understand the situation and provide adequate assistance is essential.
 
@@ -221,7 +221,7 @@ Vercel Support Team
 
 ___
 
-6. ## Follow-up reply to customer
+## 6. Follow-up reply to customer
 
 Hi there, 
 
@@ -251,7 +251,7 @@ Vercel Support Team
 
 ___
 
-7. ## Redirecting from /blog to example.com
+## 7. Redirecting from /blog to example.com
 
 Hi there,
 
@@ -280,7 +280,7 @@ To set up a redirect from the /blog path to https://example.com, you can use Ver
 
 ____
 
-8. ## Preventing a project from being indexed by search engines
+## 8. Preventing a project from being indexed by search engines
 
 Hi there,
 
@@ -325,7 +325,7 @@ Vercel Support Team
 
 ____
 
-9. ## Common problem
+## 9. Common problem
 
 One of the most common problems Vercel customers ask for help is probably build and deployment errors. These issues can arise for various reasons, including memory and disk space limits, configuration errors, and dependency problems.
 
@@ -362,13 +362,13 @@ By implementing these strategies, Vercel can address customers' immediate concer
 
 ___
 
-10. ## **Improving the Exercise**
+## 10. Improving the Exercise
 
 The Vercel familiarisation exercise is comprehensive and well-structured, balancing practical tasks and theoretical questions well. However, it could be improved or altered in some areas to enhance the candidate experience and evaluation process.
 
 
 
-1. **Provide More Context for Technical Questions**
+1. **Provide more context for technical questions**
 
 **Current issue**: Some questions might be too open-ended, which could lead to candidates spending too much time figuring out what's expected.
 
@@ -378,24 +378,24 @@ The Vercel familiarisation exercise is comprehensive and well-structured, balanc
 
 
 
-1. **Allow for Partial Completion**
+1. **Allow for partial completion**
 
-**Current Issue**: The instruction to move to the next task if unable to complete one, might cause candidates to feel pressured.**Improvement**: Encourage candidates to provide partial solutions or explanations of their thought process if they cannot fully complete a task.
+**Current issue**: The instruction to move to the next task if unable to complete one, might cause candidates to feel pressured.**Improvement**: Encourage candidates to provide partial solutions or explanations of their thought process if they cannot fully complete a task.
 
 **Suggested Wording**: "If you cannot complete any task, don't stress. Explain your thought process and what would have helped you fully complete that step, then move on to the next one."
 
 
 
-1. **Incorporate More Real-World Scenarios**
+1. **Incorporate more real-world scenarios**
 
-**Current Issue**: While the current questions are good, adding more real-world scenarios can better gauge a candidate's practical knowledge.**Improvement**: Include questions that mimic real-world support scenarios more closely, such as dealing with a frustrated customer or optimising performance.
+**Current issue**: While the current questions are good, adding more real-world scenarios can better gauge a candidate's practical knowledge.**Improvement**: Include questions that mimic real-world support scenarios more closely, such as dealing with a frustrated customer or optimising performance.
 
 **Example**: "A customer reports that their website is loading slowly. Describe the steps you would take to diagnose and resolve this issue. What tools and metrics would you use?"
 
 
 
-1. **Enhanced Customer Interaction Questions**
+1. **Enhanced customer interaction questions**
 
-**Current Issue**: The current customer interaction questions are excellent but could be enhanced to further test empathy and communication skills.**Improvement**: Add scenarios that require empathetic communication and conflict resolution skills.
+**Current issue**: The current customer interaction questions are excellent but could be enhanced to further test empathy and communication skills.**Improvement**: Add scenarios that require empathetic communication and conflict resolution skills.
 
 **Example**: "A customer writes in stating they are dissatisfied with Vercel's service and are considering moving to another platform. Craft a response that addresses their concerns, highlights Vercel's strengths, and encourages them to stay."
