@@ -35,14 +35,14 @@ import { saveChat } from '@/app/actions'
 import { SpinnerMessage, UserMessage } from '@/components/stocks/message'
 import { Chat, Message } from '@/lib/types'
 import { auth } from '@/auth'
-
-// New function to get responses content
 import { marked } from 'marked';
 import { unified } from 'unified';
 import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
+import { promises as fs } from 'fs';
+import path from 'path';
 
 import styles from '././syles/MarkdownContent.module.css'
 
@@ -56,9 +56,6 @@ async function markdownToHtml(markdown: string) {
 
   return result.toString();
 }
-
-import { promises as fs } from 'fs';
-import path from 'path';
 
 async function getResponsesContent() {
   console.log("Reading and converting responses content...");
