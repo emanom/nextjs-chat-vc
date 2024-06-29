@@ -44,8 +44,7 @@ import rehypeStringify from 'rehype-stringify';
 import { promises as fs } from 'fs';
 import path from 'path';
 
-//import styles from './syles/MarkdownContent.module.css'
-
+import styles from './syles/MarkdownContent.module.css'
 
 async function markdownToHtml(markdown: string) {
   const result = await unified()
@@ -59,23 +58,20 @@ async function markdownToHtml(markdown: string) {
 }
 
 async function getResponsesContent() {
-  console.log("Reading and converting responses content...");
+  console.log("Reading responses content...");
   try {
-    // Construct the absolute path to the responses.md file
     const filePath = path.join(process.cwd(), 'public', 'responses.md');
-    console.log("Reading from file:", filePath);
+    console.log("Reading file:", filePath);
     
-    // Read the file
     const markdown = await fs.readFile(filePath, 'utf-8');
     console.log("Read markdown content:", markdown);
     
-    // Convert Markdown to HTML
     const html = await markdownToHtml(markdown);
     console.log("Converted HTML content:", html);
     
     return html;
   } catch (error) {
-    console.error("Error reading and converting responses content:", error);
+    console.error("Error reading responses content:", error);
     throw error;
   }
 }
@@ -594,6 +590,7 @@ async function submitUserMessage(content: string) {
               </BotCard>
             );
           } catch (error) {
+            console.error("Error in showTakeHomeAssessmentUI:", error);
             return (
               <BotCard>
                 <p>Failed to load responses. Please try again later.</p>
