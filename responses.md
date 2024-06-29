@@ -154,7 +154,7 @@ Here's how I would begin troubleshooting and the questions I would ask:
 
 
 1. **Review build logs**: Ask the customer to provide the build logs. Build logs often contain error messages and other helpful information that can help diagnose the issue.
-2. **Check dDocumentation**: Refer to Vercel's documentation to see if there are any general guidelines or common issues related to builds that might apply.
+2. **Check documentation**: Refer to Vercel's documentation to see if there are any general guidelines or common issues related to builds that might apply.
 3. **Identify framework**: Determine if Vercel supports the framework or technology and if any specific configurations are required.
 
 
@@ -295,7 +295,7 @@ Here’s how you can do it:
 1. **Using vercel.json**: You can add custom headers in your vercel.json file to set the X-Robots-Tag header. Here’s an example configuration: \
 
 ```
-    {
+{
   "headers": [
     {
       "source": "/(.*)",
