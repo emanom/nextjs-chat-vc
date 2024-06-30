@@ -42,7 +42,8 @@ import remarkRehype from 'remark-rehype';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
 import { promises as fs } from 'fs';
-//import path from 'path';
+import path from 'path';
+
 
 import styles from './MarkdownContent.module.css'
 
