@@ -41,8 +41,13 @@ import remarkParse from 'remark-parse';
 import remarkRehype from 'remark-rehype';
 import rehypeRaw from 'rehype-raw';
 import rehypeStringify from 'rehype-stringify';
-import { promises as fs } from 'fs';
-import path from 'path';
+let fs;
+let path;
+
+if (typeof window === 'undefined') {
+  fs = require('fs').promises;
+  path = require('path');
+}
 
 import styles from './MarkdownContent.module.css'
 
