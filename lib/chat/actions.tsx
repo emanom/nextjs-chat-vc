@@ -45,7 +45,7 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 
-//import styles from './MarkdownContent.module.css'
+import styles from './MarkdownContent.module.css'
 
 async function markdownToHtml(markdown: string) {
   const result = await unified()
@@ -61,15 +61,12 @@ async function markdownToHtml(markdown: string) {
 async function getResponsesContent() {
   console.log("Reading responses content...");
   try {
-    //const filePath = path.join(process.cwd(), 'public', 'responses.md');
-    //console.log("Reading file:", filePath);
-    
-    //const markdown = await fs.readFile(filePath, 'utf-8');
+
     const markdown = await fs.readFile(process.cwd() + '/app/responses.md', 'utf8');
     console.log("Read markdown content:", 'ok');
     
     const html = await markdownToHtml(markdown);
-    console.log("Converted HTML content:", html);
+  
     
     return html;
   } catch (error) {
