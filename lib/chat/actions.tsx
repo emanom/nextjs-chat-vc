@@ -44,7 +44,7 @@ import rehypeStringify from 'rehype-stringify';
 import { promises as fs } from 'fs';
 import path from 'path';
 
-import styles from './styles/MarkdownContent.module.css'
+import styles from 'lib/chat/styles/MarkdownContent.module.css'
 
 async function markdownToHtml(markdown: string) {
   const result = await unified()
